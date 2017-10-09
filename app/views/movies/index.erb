@@ -1,0 +1,56 @@
+<% if current_user %>
+  <h1><%= current_user.username %>'s Movie Night</h1>
+
+  <h1>What Should I Watch?</h1>
+
+  <form action="/users/<%= current_user.id %>/results" method= "get">
+    <h3>What Genres Would You Not Mind Seeing RN? (select all that apply):</h3>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Action">Action</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Adventure">Adventure</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Comedy">Comedy</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Crime">Crime</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Drama">Drama</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Historical">Historical</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Horror">Horror</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Musical">Musical</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Romance">Romance</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Science Fiction">Sci-Fi</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="
+      War">War</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[genre]" value="Western">Western</label>
+
+    <br>
+
+    <h3>Feeling Classic Or More Modern? Or Both?:</h3>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[released]" value="">Classic</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[released]" value="">Modern</label>
+    <label class="checkbox-inline"><input type="checkbox" name="movie[released]" value="">Both</label>
+
+    <br>
+
+<!--     <h3>Wanna Dive Deeper Into A Director? Type Their Name:</h3>
+    <label for="director_input">Director Name:</label>
+    <input placeholder="Director Name" id="director_input" name="movie[director]" type="text" value="<%= @director.try(:director) %>">
+    <br> -->
+
+    <div class="form-group">
+      <h3>Does A Rotten Tomatoes Score Really Matter?</h3>
+      <select class="form-control">
+        <option name="movie[review]" value='true'>Yes, if pretentious reviewers don't like it, I don't either!</option>
+        <option name="movie[review]" value='false'>No, I'll give anything a chance!</option>
+      </select>
+      <br>
+    </div>
+
+    <input type = "submit" value = "Go!">
+  </form>
+
+  <% if @errors %>
+    <%= @errors %>
+  <% end %>
+
+
+
+<% else %>
+  <h3><a href="/">Login</a></h3>
+<% end %>

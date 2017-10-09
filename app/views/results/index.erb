@@ -1,0 +1,13 @@
+<% if current_user %>
+  <h1><%= current_user.username %>'s Movie Night</h1>
+
+  <h1>Results</h1>
+
+  <p><%= @genres %></p>
+  <p><%= @review_matters %></p>
+  <p><%= @movies.results[0]['original_title'] %></p>
+
+
+<% else %>
+  <h3><a href="/">Login</a></h3>
+<% end %>

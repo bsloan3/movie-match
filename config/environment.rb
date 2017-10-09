@@ -13,7 +13,12 @@ require 'pathname'
 
 require 'pg'
 require 'active_record'
+require 'pry'
 require 'logger'
+
+require 'bcrypt'
+
+require 'themoviedb'
 
 require 'sinatra'
 require "sinatra/reloader" if development?
