@@ -1,28 +1,49 @@
 get '/users/:id/results' do
-
-  @genres = params[:movie][:genre]
+  @genre_one = params[:movie][:genre_one]
+  @genre_two = params[:movie][:genre_two]
   @review_matters = params[:movie][:review]
-  @movies = genre_search(@genres)
+  @matched_movies = []
+  binding pry
+
+  while @matched_movies.count < 7
+    if @genre_one == "Action" || "Comedy" || "Documentary" || "Drama" || "Romance" || "Thriller"
+      @current_page = rand(500)
+    else
+      @current_page = rand(20)
+    end
+    @movies = genre_search(@genre_one).get_page(@current_page)
+    count = 0
+    until count == 20
+      if @review_matters == "True"
+        if @movies.results[count]["vote_average"] >= 7 && @movies.results[count]["original_language"] == "en"
+          @matched_movies << @movies.results[count]
+        end
+      elsif @movies.results[count]["original_language"] == "en"
+        @matched_movies << @movies.results[count]
+      end
+      count += 1
+    end
+  end
+
+  while @matched_movies.count < 10
+    if @genre_one == "Action" || "Comedy" || "Documentary" || "Drama" || "Romance" || "Thriller" || "Horror"
+      @current_page = rand(500)
+    else
+      @current_page = rand(20)
+    end
+    @movies = genre_search(@genre_two).get_page(@current_page)
+    count = 0
+    until count == 20
+      if @review_matters == "True"
+        if @movies.results[count]["vote_average"] >= 7 && @movies.results[count]["original_language"] == "en"
+          @matched_movies << @movies.results[count]
+        end
+      elsif @movies.results[count]["original_language"] == "en"
+        @matched_movies << @movies.results[count]
+      end
+      count += 1
+    end
+  end
 
   erb :'results/index'
 end
-
-# => [{"id"=>28, "name"=>"Action"},
-#  {"id"=>12, "name"=>"Adventure"},
-#  {"id"=>16, "name"=>"Animation"},
-#  {"id"=>35, "name"=>"Comedy"},
-#  {"id"=>80, "name"=>"Crime"},
-#  {"id"=>99, "name"=>"Documentary"},
-#  {"id"=>18, "name"=>"Drama"},
-#  {"id"=>10751, "name"=>"Family"},
-#  {"id"=>14, "name"=>"Fantasy"},
-#  {"id"=>36, "name"=>"History"},
-#  {"id"=>27, "name"=>"Horror"},
-#  {"id"=>10402, "name"=>"Music"},
-#  {"id"=>9648, "name"=>"Mystery"},
-#  {"id"=>10749, "name"=>"Romance"},
-#  {"id"=>878, "name"=>"Science Fiction"},
-#  {"id"=>10770, "name"=>"TV Movie"},
-#  {"id"=>53, "name"=>"Thriller"},
-#  {"id"=>10752, "name"=>"War"},
-#  {"id"=>37, "name"=>"Western"}]
