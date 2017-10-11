@@ -1,12 +1,37 @@
 <% if current_user %>
   <h1><%= current_user.username %>'s Movie Night</h1>
   <h3><a href="/users/<%= current_user.id %>/movies">Home</a></h3>
+  <h3><a href="/users/<%= current_user.id %>">Profile</a></h3>
+  <a href= "/logout"> Log Out </a>
 
   <h1>Results</h1>
 
-  <%= @matched_movies.length %>
+  <p>Top <%= @output_movies.length %> Results</p>
   <br><br>
-  <%= @matched_movies %>
+
+  <% if @output_movies.any? == false %>
+    <h2>Sorry, Please Click Home And Try Again</h2>
+  <% else %>
+    <% @output_movies.each do |movie| %>
+      <div>
+        <h1><%= movie["title"] %></h1>
+        <img src="http://image.tmdb.org/t/p/w300/<%= movie["poster_path"] %>">
+        <ul>
+        <li>Release Date: <%= movie["release_date"] %></li>
+        <li>Review: <%= movie["vote_average"] %></li>
+        <li>Plot: <%= movie["overview"] %></li>
+        </ul>
+        <form action="/users/<%= current_user.id %>/reviews" method= "post">
+          <label for="movie[score]">Score (out of 10):</label>
+          <input name="movie[score]" type="text">
+          <label for="movie[review]">Review:</label>
+          <input name="movie[review]" type="text">
+          <input type = "hidden" name="movie[name]" value = "<%= movie["title"] %>">
+          <input type = "submit" value = "Add Your Movie Review">
+        </form>
+      </div>
+    <% end %>
+  <% end %>
 
 
 

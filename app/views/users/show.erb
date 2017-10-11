@@ -1,0 +1,25 @@
+<% if current_user %>
+  <h1><%= current_user.username %>'s Profile</h1>
+  <h3><a href="/users/<%= current_user.id %>/movies">Home</a></h3>
+  <a href= "/logout"> Log Out </a>
+
+  <h1>Reviews</h1>
+  <% if @reviews %>
+    <% @reviews.each do |review| %>
+      <h2><%= review.movie.movie_title %></h2>
+      <img src="http://image.tmdb.org/t/p/w300/<%= title_search(review.movie.movie_title)[0].poster_path %>">
+      <h4>Score: <%= review.score %>/10</h4>
+      <p>Review: <%= review.review %></p>
+
+      <form action="/users/<%= current_user.id %>/reviews/<%= review.id %>" method= "post" id="delete_form">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="review_id" value="<%= review.id %>">
+        <input type = "submit" value = "delete">
+      </form>
+    <% end %>
+  <% end %>
+
+
+<% else %>
+  <h3><a href="/">Login</a></h3>
+<% end %>

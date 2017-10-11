@@ -15,3 +15,8 @@ post '/users' do
   end
 end
 
+get '/users/:id' do
+  @reviews = Review.where(user_id: current_user.id)
+
+  erb :'users/show'
+end

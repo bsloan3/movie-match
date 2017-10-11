@@ -1,8 +1,12 @@
+
 <% if current_user %>
   <h1><%= current_user.username %>'s Movie Night</h1>
-<!--   <h3><a href="/users/new">New User</a></h3> -->
+  <h3><a href="/users/<%= current_user.id %>">Profile</a></h3>
+  <a href= "/logout"> Log Out </a>
 
   <h1>What Should I Watch?</h1>
+
+  <p style="color: red"><%= @error %></p>
 
   <form action="/users/<%= current_user.id %>/results" method= "get">
     <h3>What's your first choice of genre?:</h3>
@@ -14,13 +18,10 @@
     <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Documentary">Documentary</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Drama">Drama</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Family">Family</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Fantasy">Fantasy</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Horror">Horror</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Mystery">Mystery</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Romance">Romance</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Science Fiction">Sci-Fi</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Thriller">Thriller</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="War">War</label><br>
 
     <br>
 
@@ -33,20 +34,17 @@
     <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Documentary">Documentary</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Drama">Drama</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Family">Family</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Fantasy">Fantasy</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Horror">Horror</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Mystery">Mystery</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Romance">Romance</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Science Fiction">Sci-Fi</label><br>
     <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Thriller">Thriller</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="War">War</label><br>
 
     <br>
 
     <h3>Feeling Classic Or More Modern? Or Both?:</h3>
-    <label class="radio-inline"><input type="radio" name="movie[released]" value="">Classic</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[released]" value="">Modern</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[released]" value="">Both</label>
+    <label class="radio-inline"><input type="radio" name="movie[released]" value="classic">Classic</label><br>
+    <label class="radio-inline"><input type="radio" name="movie[released]" value="modern">Modern</label><br>
+    <label class="radio-inline"><input type="radio" name="movie[released]" value="both">Both</label>
 
     <br>
 
