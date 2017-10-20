@@ -2,22 +2,52 @@
   <h1><%= current_user.username %>'s Profile</h1>
 
   <h1>Reviews</h1>
-  <% if @reviews %>
-    <% @reviews.each do |review| %>
+    <div class="carousel">
+      <div class="holder">
+        <% if @reviews %>
+          <% @reviews.each do |review| %>
+            <div class="onereview">
+              <div class='reviewimg'>
+                <img src="http://image.tmdb.org/t/p/w300/<%= title_search(review.movie.movie_title)[0].poster_path %>">
+                <div class='description'>
+                  <p class='description_content'><%= review.score %>/10</p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
-      <h2><%= review.movie.movie_title %></h2>
-      <img src="http://image.tmdb.org/t/p/w300/<%= title_search(review.movie.movie_title)[0].poster_path %>">
-      <h4>Score: <%= review.score %>/10</h4>
-      <p>Review: <%= review.review %></p>
+    <br>
 
-      <form action="/users/<%= current_user.id %>/reviews/<%= review.id %>" method= "post" id="delete_form">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="review_id" value="<%= review.id %>">
-        <input type = "submit" value = "delete">
-      </form>
+    <% if @reviews %>
+      <div id="products" class="row list-group">
+        <% @reviews.each do |review| %>
+          <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+              <img class="group list-group-image" src="http://image.tmdb.org/t/p/w300/<%= title_search(review.movie.movie_title)[0].poster_path %>">
+              <div class="caption">
+                <h4 class="group inner list-group-item-heading"><%= review.movie.movie_title %></h4>
+                <p class="group inner list-group-item-text">Review: <%= review.review %></p>
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
+                    <p class="lead">Score: <%= review.score %>/10</p>
+                  </div>
+                  <div class="col-xs-12 col-md-6">
+                    <form class="btn btn-success" action="/users/<%= current_user.id %>/reviews/<%= review.id %>" method= "post" id="delete_form">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <input type="hidden" name="review_id" value="<%= review.id %>">
+                      <input class="deletemovie" type = "submit" value = "delete">
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-  <% end %>
-
 
 <% else %>
   <h3><a href="/">Login</a></h3>

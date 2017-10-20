@@ -1,8 +1,22 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $(".movie-form-content").on("submit", function(event) {
+    event.preventDefault();
+    $('.content').html("")
+    $('.content').prepend("<div class='loader'></div>")
+    $form = $(event.target);
+    $.ajax({
+        method: $form.attr("method"),
+        url: $form.attr("action"),
+        data: $form.serialize()
+    })
+    .done(function(response) {
+        $('.loader').hide()
+        $(".content").html(response);
+    })
+  })
 
 });
+
+// $(window).load(function() {
+//   $(".loader").fadeOut("slow");
+// })

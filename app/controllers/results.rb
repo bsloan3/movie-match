@@ -1,6 +1,4 @@
 get '/users/:id/results' do
-
-
   unless params[:movie] && params[:movie][:genre_one] && params[:movie][:genre_two] && params[:movie][:released] && params[:movie][:review]
     @error = "please select all fields"
     erb :'movies/index'
