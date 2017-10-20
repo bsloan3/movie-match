@@ -1,7 +1,7 @@
 get '/users/:id/results' do
 
 
-  unless params[:movie][:genre_one] && params[:movie][:genre_two] && params[:movie][:released] && params[:movie][:review]
+  unless params[:movie] && params[:movie][:genre_one] && params[:movie][:genre_two] && params[:movie][:released] && params[:movie][:review]
     @error = "please select all fields"
     erb :'movies/index'
   else
@@ -61,22 +61,26 @@ get '/users/:id/results' do
     end
   end
 
-  @output_movies = []
-  @matched_movies.each do |movie|
-    if @release_era == "modern"
-      if movie["release_date"] =~ /\A(2|199)/
+  if @matched_movies.any?
+    @output_movies = []
+    @matched_movies.each do |movie|
+      if @release_era == "modern"
+        if movie["release_date"] =~ /\A(2|199)/
+          @output_movies << movie
+        end
+      elsif @release_era == "classic"
+        if movie["release_date"] =~ /\A(19)/
+          @output_movies << movie
+        end
+      else
         @output_movies << movie
       end
-    elsif @release_era == "classic"
-      if movie["release_date"] =~ /\A(19)/
-        @output_movies << movie
-      end
-    else
-      @output_movies << movie
     end
   end
 
-  @output_movies.sort! { |x,y| y["vote_average"]<=>x["vote_average"] }
+  if @output_movies.any?
+    @output_movies.sort! { |x,y| y["vote_average"]<=>x["vote_average"] }
+  end
 
   erb :'results/index'
 end

@@ -1,34 +1,58 @@
 <% if current_user %>
-  <h1><%= current_user.username %>'s Movie Night</h1>
-  <h3><a href="/users/<%= current_user.id %>/movies">Home</a></h3>
-  <h3><a href="/users/<%= current_user.id %>">Profile</a></h3>
-  <a href= "/logout"> Log Out </a>
 
-  <h1>Results</h1>
+  <div class="results-head">
+    <h1>Results</h1>
 
-  <p>Top <%= @output_movies.length %> Results</p>
-  <br><br>
+    <p>Top <%= @output_movies.length %> Results</p>
+    <br><br>
 
   <% if @output_movies.any? == false %>
     <h2>Sorry, Please Click Home And Try Again</h2>
+  </div>
+
   <% else %>
     <% @output_movies.each do |movie| %>
-      <div>
+      <div class="result">
+        <div class="result-column">
         <h1><%= movie["title"] %></h1>
         <img src="http://image.tmdb.org/t/p/w300/<%= movie["poster_path"] %>">
+        </div>
+        <div class="result-column">
         <ul>
         <li>Release Date: <%= movie["release_date"] %></li>
         <li>Review: <%= movie["vote_average"] %></li>
         <li>Plot: <%= movie["overview"] %></li>
         </ul>
+
+        <div class="flex-wrapper">
+          <div class="single-chart">
+            <svg viewbox="0 0 36 36" class="circular-chart blue">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path class="circle"
+                stroke-dasharray="90, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <% if movie["vote_average"] >= 7 %>
+                <text id="percent-text" x="18" y="20.35" class="percentage"><%= rand(75..100) %>% Match</text>
+              <% else %>
+                <text x="18" y="20.35" class="percentage"><%= rand(15..70) %>% Match</text>
+              <% end %>
+            </svg>
+          </div>
+        </div>
         <form action="/users/<%= current_user.id %>/reviews" method= "post">
           <label for="movie[score]">Score (out of 10):</label>
-          <input name="movie[score]" type="text">
+          <input name="movie[score]" type="text"><br>
           <label for="movie[review]">Review:</label>
-          <input name="movie[review]" type="text">
+          <input name="movie[review]" type="text"><br>
           <input type = "hidden" name="movie[name]" value = "<%= movie["title"] %>">
           <input type = "submit" value = "Add Your Movie Review">
         </form>
+      </div>
       </div>
     <% end %>
   <% end %>

@@ -9,12 +9,40 @@
 <!--   -->
   <link rel="stylesheet" href="/css/application.css">
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 
   <title></title>
 </head>
 <body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/users/<%= current_user.id %>/movies"><%= current_user.username %>'s Movie Night</a>
+      </div>
+
+      <ul class="nav navbar-nav">
+        <li><a href="/users/<%= current_user.id %>/movies">Home</a></li>
+        <% if @current_user %>
+          <li><a href="/users/<%= current_user.id %>">Profile</a></li>
+      </ul>
+
+          <ul style="float:right;" class="nav navbar-nav">
+            <li><a href="/users/<%= current_user.id %>"><%= current_user.email %></a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+
+        <% else %>
+            <li><a href="/">Login</a></li>
+            <li><a href="/users/new">New User</a></li>
+        <% end %>
+    </div>
+  </nav>
+
   <%= yield %>
 </body>
 </html>

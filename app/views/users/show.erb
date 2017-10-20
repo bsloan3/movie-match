@@ -1,7 +1,5 @@
 <% if current_user %>
   <h1><%= current_user.username %>'s Profile</h1>
-  <h3><a href="/users/<%= current_user.id %>/movies">Home</a></h3>
-  <a href= "/logout"> Log Out </a>
 
   <h1>Reviews</h1>
   <% if @reviews %>

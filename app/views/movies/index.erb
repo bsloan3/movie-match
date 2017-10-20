@@ -1,68 +1,67 @@
-
 <% if current_user %>
-  <h1><%= current_user.username %>'s Movie Night</h1>
-  <h3><a href="/users/<%= current_user.id %>">Profile</a></h3>
-  <a href= "/logout"> Log Out </a>
 
-  <h1>What Should I Watch?</h1>
+  <h1 id="form-title">What Should I Watch?</h1>
+  <div class="video-background">
+    <div class="video-foreground">
+      <iframe src="https://www.youtube.com/embed/xBasQG_6p40?start=23&controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
 
-  <p style="color: red"><%= @error %></p>
+  <p class="error"><%= @error %></p>
 
-  <form action="/users/<%= current_user.id %>/results" method= "get">
-    <h3>What's your first choice of genre?:</h3>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Action">Action</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Adventure">Adventure</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Animation">Animation</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Comedy">Comedy</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Crime">Crime</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Documentary">Documentary</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Drama">Drama</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Family">Family</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Horror">Horror</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Romance">Romance</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Science Fiction">Sci-Fi</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Thriller">Thriller</label><br>
+<div class="full-form">
+  <div class="column">
+    <form class="movie-form-content" action="/users/<%= current_user.id %>/results" method= "get">
+      <h3>What's your first choice of genre?:</h3>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Action">Action</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Adventure">Adventure</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Animation">Animation</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Comedy">Comedy</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Crime">Crime</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Documentary">Documentary</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Drama">Drama</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Family">Family</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Horror">Horror</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Romance">Romance</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Science Fiction">Sci-Fi</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Thriller">Thriller</label><br>
 
-    <br>
+      <h3>Feeling Classic Or More Modern? Or Both?:</h3>
+      <label class="radio-inline"><input type="radio" name="movie[released]" value="classic">Classic</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[released]" value="modern">Modern</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[released]" value="both">Both</label>
+  </div>
 
-    <h3>What's your second choice of genre?:</h3>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Action">Action</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Adventure">Adventure</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Animation">Animation</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Comedy">Comedy</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Crime">Crime</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Documentary">Documentary</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Drama">Drama</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Family">Family</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Horror">Horror</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Romance">Romance</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Science Fiction">Sci-Fi</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Thriller">Thriller</label><br>
+  <div class="column">
+      <h3>What's your second choice of genre?:</h3>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Action">Action</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Adventure">Adventure</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Animation">Animation</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Comedy">Comedy</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Crime">Crime</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Documentary">Documentary</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Drama">Drama</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Family">Family</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Horror">Horror</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Romance">Romance</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Science Fiction">Sci-Fi</label><br>
+      <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Thriller">Thriller</label>
 
-    <br>
+      <h3>Does A Rotten Tomatoes Score Really Matter?:</h3>
+      <label class="radio-inline"><input type="radio" name="movie[review]" value="True">Yes, if pretentious reviewers don't like it, I don't either!</label><br><br>
+      <label class="radio-inline"><input type="radio" name="movie[review]" value="False">No, I'll give anything a chance! </label>
 
-    <h3>Feeling Classic Or More Modern? Or Both?:</h3>
-    <label class="radio-inline"><input type="radio" name="movie[released]" value="classic">Classic</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[released]" value="modern">Modern</label><br>
-    <label class="radio-inline"><input type="radio" name="movie[released]" value="both">Both</label>
-
-    <br>
-
-    <h3>Does A Rotten Tomatoes Score Really Matter?:</h3>
-    <label class="radio-inline"><input type="radio" name="movie[review]" value="True">Yes, if pretentious reviewers don't like it, I don't either!</label><br><br>
-    <label class="radio-inline"><input type="radio" name="movie[review]" value="False">No, I'll give anything a chance! </label>
-
-    <br><br>
-
-    <input type = "submit" value = "Go!">
-  </form>
+      <br><br>
+      <input id="submit" type = "submit" value = "Go!">
+    </form>
+  </div>
+</div>
 
   <% if @errors %>
     <%= @errors %>
   <% end %>
 
-
-
 <% else %>
   <h3><a href="/">Login</a></h3>
 <% end %>
+
