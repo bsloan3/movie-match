@@ -7,11 +7,13 @@
     </div>
   </div>
 
-  <p class="error"><%= @error %></p>
+  <% if @error %>
+    <p class="error"><%= @error %></p>
+  <% end %>
 
 <div class="full-form">
-  <div class="column">
-    <form class="movie-form-content" action="/users/<%= current_user.id %>/results" method= "get">
+  <form class="movie-form-content" action="/users/<%= current_user.id %>/results" method= "get">
+    <div class="column">
       <h3>What's your first choice of genre?:</h3>
       <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Action">Action</label><br>
       <label class="radio-inline"><input type="radio" name="movie[genre_one]" value="Adventure">Adventure</label><br>
@@ -30,9 +32,9 @@
       <label class="radio-inline"><input type="radio" name="movie[released]" value="classic">Classic</label><br>
       <label class="radio-inline"><input type="radio" name="movie[released]" value="modern">Modern</label><br>
       <label class="radio-inline"><input type="radio" name="movie[released]" value="both">Both</label>
-  </div>
+    </div>
 
-  <div class="column">
+    <div class="column">
       <h3>What's your second choice of genre?:</h3>
       <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Action">Action</label><br>
       <label class="radio-inline"><input type="radio" name="movie[genre_two]" value="Adventure">Adventure</label><br>
@@ -53,18 +55,14 @@
 
       <br><br>
 
-        <div class="btn">
-            <span><input id="submit" value="FIND MOVIES!" type = "submit"></span>
-            <div class="dot"></div>
-        </div>
+      <div class="btn">
+          <span><input id="submit" value="FIND MOVIES!" type = "submit"></span>
+          <div class="dot"></div>
+      </div>
+    </div>
 
-    </form>
-  </div>
+  </form>
 </div>
-
-  <% if @errors %>
-    <%= @errors %>
-  <% end %>
 
 <% else %>
   <h3><a href="/">Login</a></h3>
