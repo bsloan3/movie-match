@@ -26,12 +26,12 @@
     <% if @reviews %>
       <div id="products" class="row list-group">
         <% @reviews.each do |review| %>
-          <div class="item  col-xs-4 col-lg-4">
+          <div class="item">
             <div class="thumbnail">
               <img class="group list-group-image" src="http://image.tmdb.org/t/p/w300/<%= title_search(review.movie.movie_title)[0].poster_path %>">
               <div class="caption">
                 <h4 class="group inner list-group-item-heading"><%= review.movie.movie_title %></h4>
-                <p class="group inner list-group-item-text">Review: <%= review.review %></p>
+                <p class="group inner list-group-item-text review">Review: <%= review.review %></p>
                 <div class="row">
                   <div class="col-xs-12 col-md-6">
                     <p class="lead">Score: <%= review.score %>/10</p>

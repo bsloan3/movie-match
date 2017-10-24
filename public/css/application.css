@@ -177,7 +177,6 @@
 .vid-info .acronym { display: none; }
 }
 
-
 .column {
   float: left;
   width: 45%;
@@ -232,7 +231,7 @@
 }
 
 
-
+/*profile carousel*/
 
 .onereview {
   display: inline-block;
@@ -275,7 +274,6 @@
   }
 }
 
-
 div.reviewimg{
   float:left; /* important */
   position:relative; /* important(so we can absolutely position the description div */
@@ -303,15 +301,26 @@ p.description_content{
   border: none;
 }
 
+.item{
+  width: 33.33%;
+  height:600px;
+  min-width: 260px;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+#products{
+  margin: 0 auto;
+
+}
+
+/*login/out*/
 .home{
   padding-left: 5%;
 }
-
-
-
-
-
-
 
 
 
@@ -372,5 +381,88 @@ p.description_content{
 .list-group-item-text
 {
     margin: 0 0 11px;
+}
+
+
+/*for mobile*/
+
+@media only screen and (max-width: 780px) {
+    .video-background {
+        display: none;
+    }
+
+    .result-column{
+      width: 100%;
+      min-height: 0;
+      padding-top: 0;
+    }
+
+}
+
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+
+/* Portrait */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+}
+
+/* Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .item{
+  width: 33.33%;
+  height:600px;
+  min-width: 260px;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+
+}
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 812px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+
 }
 
