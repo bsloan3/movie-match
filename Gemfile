@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.3.4'
 # PostgreSQL driver
 gem 'pg'
 
@@ -20,6 +20,9 @@ gem 'themoviedb'
 gem 'bcrypt'
 gem 'dotenv'
 
+gem 'pry'
+gem 'pry-byebug'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
@@ -28,6 +31,4 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'faker'
-  gem 'pry'
-  gem 'pry-byebug'
 end
