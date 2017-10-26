@@ -18,8 +18,7 @@ gem 'shotgun'
 gem 'themoviedb'
 
 gem 'bcrypt'
-gem 'pry'
-gem 'pry-byebug'
+gem 'dotenv'
 
 group :test do
   gem 'shoulda-matchers'
@@ -29,5 +28,6 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl'
   gem 'faker'
-  gem 'dotenv'
+  gem 'pry'
+  gem 'pry-byebug'
 end
