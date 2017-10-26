@@ -1,3 +1,6 @@
+
+/*movie form and button*/
+
 .flex-wrapper {
   display: flex;
   flex-flow: row nowrap;
@@ -57,13 +60,9 @@
   font-family: "Helvetica";
 }
 
-/*movie form*/
- #form-title{
-  text-align: center;
-  color: white;
- }
 .movie-form-content{
   color: white;
+  background: rgba(0, 0, 0, 0.80);
 }
 .error{
   color: red;
@@ -138,7 +137,7 @@
   padding: 5%
 }
 
-/*video*/
+/*homepage and video*/
 
 * { box-sizing: border-box; }
 .video-background {
@@ -179,19 +178,40 @@
 
 .column {
   float: left;
-  width: 45%;
-  min-height:700px;
-  padding: 5%;
+  width: 50%;
+  min-height:100%;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+html,
+.column {
+    height: 100vh;
+    max-height:790px;
+}
+
+ #form-title{
+  text-align: center;
+  background: rgba(0, 0, 0, 0.80);
   color: white;
-  background: rgba(0, 0, 0, 0.85);
-}
-.full-form {
-  padding-left: 15%;
-  padding-right: 15%;
-  margin: auto 0;
+  margin: 0;
+  padding-top: 2%;
+ }
 
+/*navbar*/
+.homepage-form{
+  padding: 15px;
 }
 
+#navbar{
+  margin-bottom: 0px;
+}
+
+form p{
+  color: white;
+  text-align: center;
+  margin-bottom: 0px;
+}
 
 /*results*/
 
@@ -231,7 +251,11 @@
 }
 
 
-/*profile carousel*/
+/*profile and carousel*/
+
+.profileheader{
+  margin-left: 3%;
+}
 
 .onereview {
   display: inline-block;
@@ -324,7 +348,7 @@ p.description_content{
 
 
 
-/*extra shit i dont need*/
+/*extra stuff*/
 .glyphicon { margin-right:5px; }
 .thumbnail
 {

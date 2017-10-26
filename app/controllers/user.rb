@@ -15,8 +15,19 @@ post '/users' do
   end
 end
 
+get '/users' do
+  @user = User.find_by(email: params[:user][:email])
+  if @user
+    redirect "/users/#{@user.id}"
+  else
+    @error = "user email does not exist"
+    redirect "/users/#{current_user.id}/movies"
+  end
+end
+
 get '/users/:id' do
-  @reviews = Review.where(user_id: current_user.id)
+  @user = User.find_by(id: params[:id])
+  @reviews = Review.where(user_id: params[:id])
 
   erb :'users/show'
 end

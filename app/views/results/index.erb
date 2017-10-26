@@ -2,7 +2,13 @@
 
   <div class="results-head">
     <h1>Results</h1>
-
+    <form action="/users/<%= current_user.id %>/results" method= "get">
+      <input type = "hidden" name="movie[genre_one]" value = "<%= @genre_one %>">
+      <input type = "hidden" name="movie[genre_two]" value = "<%= @genre_two %>">
+      <input type = "hidden" name="movie[released]" value = "<%= @release_era %>">
+      <input type = "hidden" name="movie[review]" value = "<%= @review_matters %>">
+      <input type = "submit" value = "Re-Calculate">
+    </form>
     <p>Top <%= @output_movies.length %> Results</p>
     <br><br>
 
@@ -39,7 +45,7 @@
               <% if movie["vote_average"] >= 7 %>
                 <text id="percent-text" x="18" y="20.35" class="percentage"><%= rand(75..100) %>% Match</text>
               <% else %>
-                <text x="18" y="20.35" class="percentage"><%= rand(15..70) %>% Match</text>
+                <text id="percent-text" x="18" y="20.35" class="percentage"><%= rand(15..70) %>% Match</text>
               <% end %>
             </svg>
           </div>

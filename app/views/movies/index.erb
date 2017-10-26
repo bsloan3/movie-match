@@ -1,17 +1,13 @@
 <% if current_user %>
 
   <h1 id="form-title">What Should I Watch?</h1>
+
   <div class="video-background">
     <div class="video-foreground">
-      <iframe src="https://www.youtube.com/embed/xBasQG_6p40?start=23&controls=0&showinfo=0&rel=0&autoplay=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/xBasQG_6p40?start=23&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&playlist=W0LHTWG-UmQ" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 
-  <% if @error %>
-    <p class="error"><%= @error %></p>
-  <% end %>
-
-<div class="full-form">
   <form class="movie-form-content" action="/users/<%= current_user.id %>/results" method= "get">
     <div class="column">
       <h3>What's your first choice of genre?:</h3>
@@ -33,6 +29,9 @@
       <label class="radio-inline"><input type="radio" name="movie[released]" value="modern">Modern</label><br>
       <label class="radio-inline"><input type="radio" name="movie[released]" value="both">Both</label>
     </div>
+    <% if @error %>
+      <p class="error"><%= @error %></p>
+    <% end %>
 
     <div class="column">
       <h3>What's your second choice of genre?:</h3>
@@ -60,10 +59,8 @@
           <div class="dot"></div>
       </div>
     </div>
-
+  <p>Bradley Sloan | Results: 'The Movie DB' API</p>
   </form>
-</div>
-
 <% else %>
   <h3><a href="/">Login</a></h3>
 <% end %>

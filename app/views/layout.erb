@@ -21,7 +21,7 @@
 
 <body>
   <div class="content">
-    <nav class="navbar navbar-inverse">
+    <nav id="navbar" class="navbar navbar-inverse">
       <% if @current_user %>
       <div class="container-fluid">
         <div class="navbar-header">
@@ -31,9 +31,18 @@
         <ul class="nav navbar-nav">
           <li><a href="/users/<%= current_user.id %>/movies">Home</a></li>
           <li><a href="/users/<%= current_user.id %>">Profile</a></li>
+
+          <li>
+            <form class="homepage-form" action="/users" method= "get">
+              <label for="email_input"></label>
+              <input id="email_input" name="user[email]" placeholder="Search For Friends" type="text" value="<%= @email.try(:email) %>">
+              <input type = "submit" value = "Search">
+            </form>
+          </li>
         </ul>
-        <ul class="nav navbar-nav">
-          <li><a href="/logout">Logout</a></li>
+
+        <ul style="float:right;" class="nav navbar-nav">
+          <li ><a href="/logout">Logout</a></li>
         </ul>
 
       <% else %>
