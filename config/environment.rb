@@ -14,6 +14,7 @@ require 'pathname'
 require 'pg'
 require 'active_record'
 require 'pry'
+require 'pry-byebug'
 require 'logger'
 
 require 'bcrypt'

@@ -1,0 +1,58 @@
+<% if current_user %>
+  <h1 class="profileheader"><strong><%= @user.username %>'s Profile</strong></h1>
+
+  <% if @reviews.count > 5 %>
+    <h1 class="profileheader">Reviews</h1>
+      <div class="carousel">
+        <div class="holder">
+          <% if @reviews %>
+            <% @reviews.each do |review| %>
+              <div class="onereview">
+                <div class='reviewimg'>
+                  <img src="http://image.tmdb.org/t/p/w300/<%= title_search(review.movie.movie_title)[0].poster_path %>">
+                  <div class='description'>
+                    <p class='description_content'><%= review.score %>/10</p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <br>
+
+    <% if @reviews %>
+      <div id="products" class="row list-group">
+        <% @reviews.each do |review| %>
+          <div class="item">
+            <div class="thumbnail">
+              <img class="group list-group-image" src="http://image.tmdb.org/t/p/w300/<%= title_search(review.movie.movie_title)[0].poster_path %>">
+              <div class="caption">
+                <h4 class="group inner list-group-item-heading"><%= review.movie.movie_title %></h4>
+                <p class="group inner list-group-item-text review">Review: <%= review.review %></p>
+                <div class="row">
+                  <div class="col-xs-12 col-md-6">
+                    <p class="lead">Score: <%= review.score %>/10</p>
+                  </div>
+                  <% if current_user.id == @user.id %>
+                    <div class="col-xs-12 col-md-6">
+                      <form class="btn btn-success" action="/users/<%= current_user.id %>/reviews/<%= review.id %>" method= "post" id="delete_form">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="review_id" value="<%= review.id %>">
+                        <input class="deletemovie" type = "submit" value = "delete">
+                      </form>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+<% else %>
+  <h3><a href="/">Login</a></h3>
+<% end %>

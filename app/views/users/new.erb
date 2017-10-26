@@ -1,5 +1,5 @@
+<div class="home">
 <h1>New User</h1>
-<h3><a href="/">Login</a></h3>
 
 <form action="/users" method= "post">
   <label for="username_input">Username:</label>
@@ -15,5 +15,6 @@
 </form>
 
 <% if @errors %>
-  <%= @errors %>
+  <p class="error"><%= @errors %></p>
 <% end %>
+</div>

@@ -1,6 +1,6 @@
+<div class="home">
 <h1>Log In</h1>
-<h3><a href="/users/new">New User</a></h3>
-<br>
+
 
 <form action="/login" method= "post">
   <label for="email_input">Email:</label>
@@ -13,5 +13,6 @@
 </form>
 
 <% if @errors %>
-  <%= @errors %>
+  <p class="error"><%= @errors %></p>
 <% end %>
+</div>

@@ -1,28 +1,26 @@
 get '/users/:id/results' do
+  unless params[:movie] && params[:movie][:genre_one] && params[:movie][:genre_two] && params[:movie][:released] && params[:movie][:review]
+    @error = "please select all fields"
+    erb :'movies/index'
+  else
+    @genre_one = params[:movie][:genre_one]
+    @genre_two = params[:movie][:genre_two]
+    @release_era = params[:movie][:released]
+    @review_matters = params[:movie][:review]
 
-  @genres = params[:movie][:genre]
-  @review_matters = params[:movie][:review]
-  @movies = genre_search(@genres)
+    # first_match helper
+    @matched_movies = first_match(@genre_one, @review_matters)
 
-  erb :'results/index'
+    # second_match helper
+    @matched_movies = second_match(@matched_movies, @genre_two, @review_matters)
+
+    # output_array helper
+    @output_movies = output_array(@matched_movies, @release_era)
+
+    if @output_movies.any?
+      @output_movies.sort! { |x,y| y["vote_average"]<=>x["vote_average"] }
+    end
+
+    erb :'results/index'
+  end
 end
-
-# => [{"id"=>28, "name"=>"Action"},
-#  {"id"=>12, "name"=>"Adventure"},
-#  {"id"=>16, "name"=>"Animation"},
-#  {"id"=>35, "name"=>"Comedy"},
-#  {"id"=>80, "name"=>"Crime"},
-#  {"id"=>99, "name"=>"Documentary"},
-#  {"id"=>18, "name"=>"Drama"},
-#  {"id"=>10751, "name"=>"Family"},
-#  {"id"=>14, "name"=>"Fantasy"},
-#  {"id"=>36, "name"=>"History"},
-#  {"id"=>27, "name"=>"Horror"},
-#  {"id"=>10402, "name"=>"Music"},
-#  {"id"=>9648, "name"=>"Mystery"},
-#  {"id"=>10749, "name"=>"Romance"},
-#  {"id"=>878, "name"=>"Science Fiction"},
-#  {"id"=>10770, "name"=>"TV Movie"},
-#  {"id"=>53, "name"=>"Thriller"},
-#  {"id"=>10752, "name"=>"War"},
-#  {"id"=>37, "name"=>"Western"}]

@@ -1,11 +1,70 @@
 <% if current_user %>
-  <h1><%= current_user.username %>'s Movie Night</h1>
 
-  <h1>Results</h1>
+  <div class="results-head">
+    <h1>Results</h1>
+    <form action="/users/<%= current_user.id %>/results" method= "get">
+      <input type = "hidden" name="movie[genre_one]" value = "<%= @genre_one %>">
+      <input type = "hidden" name="movie[genre_two]" value = "<%= @genre_two %>">
+      <input type = "hidden" name="movie[released]" value = "<%= @release_era %>">
+      <input type = "hidden" name="movie[review]" value = "<%= @review_matters %>">
+      <input type = "submit" value = "Re-Calculate">
+    </form>
+    <p>Top <%= @output_movies.length %> Results</p>
+    <br><br>
 
-  <p><%= @genres %></p>
-  <p><%= @review_matters %></p>
-  <p><%= @movies.results[0]['original_title'] %></p>
+  <% if @output_movies.any? == false %>
+    <h2>Sorry, Please Click Home And Try Again</h2>
+  </div>
+
+  <% else %>
+    <% @output_movies.each do |movie| %>
+      <div class="result">
+        <div class="result-column">
+        <h1><%= movie["title"] %></h1>
+        <img src="http://image.tmdb.org/t/p/w300/<%= movie["poster_path"] %>">
+        </div>
+        <div class="result-column">
+        <ul>
+        <li>Release Date: <%= movie["release_date"] %></li>
+        <li>Review: <%= movie["vote_average"] %></li>
+        <li>Plot: <%= movie["overview"] %></li>
+        </ul>
+
+        <div class="flex-wrapper">
+          <div class="single-chart">
+            <svg viewbox="0 0 36 36" class="circular-chart blue">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path class="circle"
+                stroke-dasharray="90, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <% if movie["vote_average"] >= 7 %>
+                <text id="percent-text" x="18" y="20.35" class="percentage"><%= rand(75..100) %>% Match</text>
+              <% else %>
+                <text id="percent-text" x="18" y="20.35" class="percentage"><%= rand(15..70) %>% Match</text>
+              <% end %>
+            </svg>
+          </div>
+        </div>
+        <form action="/users/<%= current_user.id %>/reviews" method= "post">
+          <label for="movie[score]">Score (out of 10):</label>
+          <input name="movie[score]" type="text"><br>
+          <label for="movie[review]">Review:</label>
+          <textarea name="movie[review]" type="text"></textarea><br>
+          <input type = "hidden" name="movie[name]" value = "<%= movie["title"] %>">
+          <input type = "submit" value = "Add Your Movie Review">
+        </form>
+      </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
+
 
 
 <% else %>
