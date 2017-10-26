@@ -21,7 +21,7 @@ get '/users' do
     redirect "/users/#{@user.id}"
   else
     @error = "user email does not exist"
-    redirect "/users/#{current_user.id}/movies"
+    erb :"/movies/index"
   end
 end
 
