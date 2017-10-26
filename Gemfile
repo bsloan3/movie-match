@@ -18,10 +18,13 @@ gem 'shotgun'
 gem 'themoviedb'
 
 gem 'bcrypt'
-gem 'dotenv'
 
 gem 'pry'
 gem 'pry-byebug'
+
+group :development do
+  gem 'dotenv'
+end
 
 group :test do
   gem 'shoulda-matchers'
