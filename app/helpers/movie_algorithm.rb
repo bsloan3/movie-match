@@ -56,7 +56,7 @@ def second_match(matched_movies, genre_two, review_matters)
     else
       break
     end
-    movies = genre_search(genre_two).get_page(current_page)
+    movies = genre_search(genre_two).get_page(current_page || 10)
 
     break if movies == nil
 
