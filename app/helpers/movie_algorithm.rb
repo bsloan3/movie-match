@@ -29,7 +29,7 @@ def first_match(genre_one, review_matters)
       break
     end
     movies = genre_search(genre_one).get_page(current_page)
-
+    p movies
     break if movies == nil
 
     count = 0
