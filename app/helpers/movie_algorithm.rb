@@ -24,7 +24,7 @@ def first_match(genre_one, review_matters)
     if genre_one == "Action" || genre_one == "Comedy" || genre_one == "Documentary" || genre_one == "Drama" || genre_one == "Romance" || genre_one == "Thriller"
       current_page = rand(500)
     else
-      current_page = rand(30)
+      current_page = rand(40)
     end
     movies = genre_search(genre_one).get_page(current_page)
     break if movies.nil?
@@ -49,7 +49,7 @@ def second_match(matched_movies, genre_two, review_matters)
     if genre_two == "Action" || genre_two == "Comedy" || genre_two == "Documentary" || genre_two == "Drama" || genre_two == "Romance" || genre_two == "Thriller" || genre_two == "Horror"
       current_page = rand(500)
     else
-      current_page = rand(30)
+      current_page = rand(40)
     end
     movies = genre_search(genre_two).get_page(current_page)
 

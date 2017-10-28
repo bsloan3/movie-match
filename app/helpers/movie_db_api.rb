@@ -1,14 +1,12 @@
 def title_search(title)
-  puts "ENV~~~~~~~~~~~~ #{ENV["API_KEY"]} ~~~~~~~~~~~~~~~"
-  Tmdb::Api.key(ENV["API_KEY"])
+  Tmdb::Api.key("2f70af6d0463402e0b8e1e15f0af5457")
   Tmdb::Api.language("en")
   Tmdb::Movie.find(title)
 
 end
 
 def genre_search(genre)
-  puts "ENV~~~~~~~~~~~~ #{ENV["API_KEY"]} ~~~~~~~~~~~~~~~"
-  Tmdb::Api.key(ENV["API_KEY"])
+  Tmdb::Api.key("2f70af6d0463402e0b8e1e15f0af5457")
   Tmdb::Api.language("en")
   Tmdb::Genre.find(genre)
 end
