@@ -20,13 +20,14 @@ end
 
 def first_match(genre_one, review_matters)
   matched_movies = []
-  while matched_movies.count < 7
+  while matched_movies.count < 6
+    sleep(1)
     if genre_one == "Action" || genre_one == "Comedy" || genre_one == "Documentary" || genre_one == "Drama" || genre_one == "Romance" || genre_one == "Thriller"
-      current_page = rand(500)
+      current_page = rand(400)
     else
       current_page = rand(40)
     end
-    movies = genre_search(genre_one).get_page(current_page)
+    movies = genre_search(genre_one).get_page(current_page || 1)
     break if movies.nil?
 
     count = 0
@@ -46,13 +47,13 @@ end
 
 def second_match(matched_movies, genre_two, review_matters)
   while matched_movies.count < 10
+    sleep(1)
     if genre_two == "Action" || genre_two == "Comedy" || genre_two == "Documentary" || genre_two == "Drama" || genre_two == "Romance" || genre_two == "Thriller" || genre_two == "Horror"
-      current_page = rand(500)
+      current_page = rand(400)
     else
       current_page = rand(40)
     end
-    movies = genre_search(genre_two).get_page(current_page)
-
+    movies = genre_search(genre_two).get_page(current_page || 1)
     break if movies.nil?
 
     count = 0
