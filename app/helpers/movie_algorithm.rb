@@ -25,7 +25,7 @@ def first_match(genre_one, review_matters)
     if genre_one == "Action" || genre_one == "Comedy" || genre_one == "Documentary" || genre_one == "Drama" || genre_one == "Romance" || genre_one == "Thriller"
       current_page = rand(400)
     else
-      current_page = rand(40)
+      current_page = rand(50)
     end
     movies = genre_search(genre_one).get_page(current_page || 1)
     break if movies.nil?
