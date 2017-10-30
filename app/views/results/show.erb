@@ -1,0 +1,46 @@
+<% if current_user %>
+
+  <div class="results-head">
+    <h1>Results</h1>
+
+    <p>Top <%= @output_movies.length %> Results</p>
+    <br><br>
+
+  <% if @output_movies.any? == false %>
+    <h2>Sorry, Please Click Home And Try Again</h2>
+  </div>
+
+  <% else %>
+    <% @output_movies.each do |movie| %>
+      <div class="result">
+        <div class="result-column">
+        <h1><%= movie.title %></h1>
+        <img src="http://image.tmdb.org/t/p/w300/<%= movie.poster_path %>">
+        </div>
+        <div class="result-column">
+          <ul>
+          <li>Release Date: <%= movie.release_date %></li>
+          <li>Review: <%= movie.vote_average %></li>
+          <li>Plot: <%= movie.overview %></li>
+          </ul>
+
+          <form action="/users/<%= current_user.id %>/reviews" method= "post">
+            <label for="movie[score]">Score (out of 10):</label>
+            <input name="movie[score]" type="text"><br>
+            <label for="movie[review]">Review:</label>
+            <textarea name="movie[review]" type="text"></textarea><br>
+            <input type = "hidden" name="movie[name]" value = "<%= movie.title %>">
+            <input type = "submit" value = "Add Your Movie Review">
+          </form>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
+
+
+
+<% else %>
+  <h3><a href="/">Login</a></h3>
+<% end %>

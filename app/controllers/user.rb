@@ -17,8 +17,11 @@ end
 
 get '/users' do
   @user = User.find_by(email: params[:user][:email])
+  @user2 = User.find_by(username: params[:user][:email])
   if @user
     redirect "/users/#{@user.id}"
+  elsif @user2
+    redirect "/users/#{@user2.id}"
   else
     @error = "user email does not exist"
     erb :"/movies/index"

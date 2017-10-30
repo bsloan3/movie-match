@@ -22,7 +22,7 @@
 <body>
   <div class="content">
     <nav id="navbar" class="navbar navbar-inverse">
-      <% if @current_user %>
+      <% if current_user %>
       <div class="container-fluid">
         <div class="navbar-header">
           <a class="navbar-brand" href="/users/<%= current_user.id %>/movies"><%= current_user.username %>'s Movie Night</a>
@@ -36,6 +36,14 @@
             <form class="homepage-form" action="/users" method= "get">
               <label for="email_input"></label>
               <input id="email_input" name="user[email]" placeholder="Search For Friends" type="text" value="<%= @email.try(:email) %>">
+              <input type = "submit" value = "Search">
+            </form>
+          </li>
+
+          <li>
+            <form class="homepage-form" action="/users/<%= current_user.id %>/search" method= "get">
+              <label for="title_input"></label>
+              <input id="title_input" name="movie[title]" placeholder="Search For Films" type="text" value="<%= @movie.try(:title) %>">
               <input type = "submit" value = "Search">
             </form>
           </li>

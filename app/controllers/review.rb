@@ -5,21 +5,16 @@ post '/users/:id/reviews' do
     if @review.save
       redirect "/users/#{current_user.id}"
     else
-      @errors = "Sorry, something went wrong with your review."
-      erb :"/users/show"
+      @error = "Sorry, something went wrong with your review."
+      @user = User.find_by(id: params[:id])
+      erb :"/movies/index"
     end
   else
-    @errors = "Sorry, something went wrong with your review."
-    erb :"/users/show"
+    @error = "Sorry, something went wrong with your review."
+    @user = User.find_by(id: params[:id])
+    erb :"/movies/index"
   end
-
 end
-
-# patch '/users/:user_id/reviews/:id' do
-#   review = Review.find_by(id: params[:review_id])
-#   review.update(start_time: params[:potluck][:start_time])
-#   redirect "/users/#{current_user.id}"
-# end
 
 delete '/users/:user_id/reviews/:id' do
   review = Review.find_by(id: params[:review_id])
